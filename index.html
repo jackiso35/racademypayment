@@ -219,58 +219,62 @@
         setInterval(createSnow, 500);
 
         // Countdown Timer for Campaign
-        const campaignEndTime = new Date(new Date().getTime() + 24 * 60 * 60 * 1000); // 24 hours from now
-        const countdownElement = document.getElementById('countdown');
+        const campaignEndTime = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000); // 7 days from now
+const countdownElement = document.getElementById('countdown');
 
-        function updateCountdown() {
-            const now = new Date();
-            const remainingTime = campaignEndTime - now;
+function updateCountdown() {
+    const now = new Date();
+    const remainingTime = campaignEndTime - now;
 
-            if (remainingTime <= 0) {
-                countdownElement.innerText = "Campaign ended!";
-                return;
-            }
+    if (remainingTime <= 0) {
+        countdownElement.innerText = "Campaign ended!";
+        return;
+    }
 
-            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+    const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
-            countdownElement.innerText = `${hours}h ${minutes}m ${seconds}s`;
-        }
-        setInterval(updateCountdown, 1000);
+    countdownElement.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+setInterval(updateCountdown, 1000);
 
-        // Show Modal
-        function showModal() {
-            document.getElementById('payment-modal').classList.add('visible');
-        }
+// Show Modal
+function showModal() {
+    document.getElementById('payment-modal').classList.add('visible');
+}
 
-        // Close Modal
-        function closeModal() {
-            document.getElementById('payment-modal').classList.remove('visible');
-        }
+// Close Modal
+function closeModal() {
+    document.getElementById('payment-modal').classList.remove('visible');
+}
 
-        // Redirect to Telegram
-        function redirectToTelegram() {
-            window.location.href = "https://t.me/your_telegram_username";
-        }
+// Redirect to Telegram
+function redirectToTelegram() {
+    window.location.href = "https://t.me/your_telegram_username";
+}
 
-        // Timer for Payment Section
-        let paymentTimeRemaining = 59 * 60; // 59 minutes in seconds
-        const paymentTimerElement = document.getElementById('payment-timer');
+// Timer for Payment Section
+let paymentTimeRemaining = 7 * 24 * 60 * 60; // 7 days in seconds
+const paymentTimerElement = document.getElementById('payment-timer');
 
-        function updatePaymentTimer() {
-            if (paymentTimeRemaining <= 0) {
-                paymentTimerElement.innerText = "Time's up!";
-                return;
-            }
+function updatePaymentTimer() {
+    if (paymentTimeRemaining <= 0) {
+        paymentTimerElement.innerText = "Time's up!";
+        return;
+    }
 
-            const minutes = Math.floor(paymentTimeRemaining / 60);
-            const seconds = paymentTimeRemaining % 60;
+    const days = Math.floor(paymentTimeRemaining / (24 * 60 * 60));
+    const hours = Math.floor((paymentTimeRemaining % (24 * 60 * 60)) / (60 * 60));
+    const minutes = Math.floor((paymentTimeRemaining % (60 * 60)) / 60);
+    const seconds = paymentTimeRemaining % 60;
 
-            paymentTimerElement.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-            paymentTimeRemaining--;
-        }
-        setInterval(updatePaymentTimer, 1000);
+    paymentTimerElement.innerText = `${days}d ${hours}h ${minutes}m ${seconds < 10 ? '0' : ''}${seconds}`;
+    paymentTimeRemaining--;
+}
+setInterval(updatePaymentTimer, 1000);
+
     </script>
 </body>
 </html>
