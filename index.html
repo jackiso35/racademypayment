@@ -188,13 +188,27 @@
         <div class="footer">
             <p>If you have any issues, <a href="https://t.me/maverickdrake">contact us</a>.</p>
         </div>
-
-     <div class="modal" id="payment-modal">
+<div class="modal" id="payment-modal">
     <button class="modal-close" onclick="closeModal()">&times;</button>
-    <p class="crypto-address">Crypto Address: TRC20_USDT_Address_Here</p>
+    <p class="crypto-address">
+        Crypto Address: <span id="crypto-address">TYE7a9aAU88vJWi5pFM8SNkZYwpTqEzuRT</span>
+        <button onclick="copyAddress()" class="copy-button">Copy</button>
+    </p>
     <p>Remaining time: <span id="payment-timer">59:00</span></p>
     <a href="https://t.me/maverickdrake" target="_blank" class="pay-button">I PAID</a>
 </div>
+
+<script>
+    function copyAddress() {
+        const address = document.getElementById('crypto-address').textContent;
+        navigator.clipboard.writeText(address).then(() => {
+            alert('Address copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy address: ', err);
+        });
+    }
+</script>
+
 
     </div>
 
