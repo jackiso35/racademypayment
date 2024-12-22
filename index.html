@@ -195,8 +195,24 @@
         <button onclick="copyAddress()" class="copy-button">Copy</button>
     </p>
     <p>Remaining time: <span id="payment-timer">59:00</span></p>
-    <a href="https://t.me/maverickdrake" target="_blank" class="pay-button">I PAID</a>
+    <button class="pay-button" onclick="redirectToTelegram()">I PAID</button>
 </div>
+
+<script>
+    function copyAddress() {
+        const address = document.getElementById('crypto-address').textContent;
+        navigator.clipboard.writeText(address).then(() => {
+            alert('Address copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy address: ', err);
+        });
+    }
+
+    function redirectToTelegram() {
+        window.location.href = "https://t.me/maverickdrake";
+    }
+</script>
+
 
 <script>
     function copyAddress() {
